@@ -8,6 +8,7 @@
     <modules>
         <module>../web</module>
         <module>../core</module>
+        <module>../manage</module>
     </modules>
     <name>poms</name>
     <url>http://maven.apache.org</url>

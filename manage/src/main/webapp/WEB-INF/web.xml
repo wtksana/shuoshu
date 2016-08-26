@@ -4,8 +4,7 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
-
-    <display-name>Web</display-name>
+    <display-name>Manage</display-name>
     <!-- 配置Spring容器 -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
@@ -61,5 +60,6 @@
         <welcome-file>index.html</welcome-file>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+
 
 </web-app>

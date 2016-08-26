@@ -7,9 +7,9 @@
         <relativePath>../poms/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>web</artifactId>
+    <artifactId>manage</artifactId>
     <packaging>war</packaging>
-    <name>web</name>
+    <name>manage</name>
 
 
 
@@ -21,6 +21,6 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>web</finalName>
+        <finalName>manage</finalName>
     </build>
 </project>

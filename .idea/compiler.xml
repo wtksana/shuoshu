@@ -23,11 +23,13 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="core" />
+        <module name="manage" />
         <module name="web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="core" target="1.5" />
+      <module name="manage" target="1.5" />
       <module name="poms" target="1.5" />
       <module name="web" target="1.5" />
     </bytecodeTargetLevel>

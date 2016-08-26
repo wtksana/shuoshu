@@ -5,6 +5,7 @@
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/core" />
+    <file type="web" url="file://$PROJECT_DIR$/manage" />
     <file type="web" url="file://$PROJECT_DIR$/poms" />
     <file type="web" url="file://$PROJECT_DIR$/web" />
   </component>
