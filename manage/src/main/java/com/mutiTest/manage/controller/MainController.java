@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Created by wt on 2016/8/26.
  */
 @Controller
-public class IndexController {
+public class MainController {
 
     @RequestMapping(value="/index")
-    public String loginPage(Model model){
+    public String home(Model model){
         return  "/index";
     }
 }
