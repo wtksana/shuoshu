@@ -1,4 +1,4 @@
-package com.mutiTest.web.controller;
+package com.shuoshu.core.base.controll;
 
 import org.apache.shiro.session.Session;
 import org.springframework.web.bind.annotation.ModelAttribute;

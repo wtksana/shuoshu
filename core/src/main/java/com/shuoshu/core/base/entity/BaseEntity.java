@@ -1,7 +1,4 @@
-package com.shuoshu.core.entity;
-
-import javax.persistence.Id;
-import java.util.UUID;
+package com.shuoshu.core.base.entity;
 
 /**
  * Created by wt on 2016/8/26.
