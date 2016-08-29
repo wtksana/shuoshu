@@ -1,4 +1,4 @@
-package com.mutiTest.web.controller;
+package com.shuoshu.web.controller;
 
 
 import com.shuoshu.core.base.controll.BaseController;
