@@ -1,4 +1,4 @@
-package com.shuoshu.core.util;
+package com.shuoshu.util;
 
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.math.NumberUtils;

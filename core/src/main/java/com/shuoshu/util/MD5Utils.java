@@ -1,4 +1,4 @@
-package com.shuoshu.core.util;
+package com.shuoshu.util;
 
 public class MD5Utils {
 	/*

@@ -1,4 +1,4 @@
-package com.shuoshu.core.util;
+package com.shuoshu.util;
 
 import java.io.BufferedWriter;
 import java.io.File;

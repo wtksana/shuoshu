@@ -1,4 +1,4 @@
-package com.shuoshu.core.util;
+package com.shuoshu.util;
 
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.lang3.StringEscapeUtils;
@@ -1003,7 +1003,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	}
     
 	/**
-	 * TODO 去除字符串首尾出现的某个字符. 
+	 * DO 去除字符串首尾出现的某个字符.
 	 * @author QianPengZhan
 	 * @date 2016年7月27日
 	 * @param source 源字符串

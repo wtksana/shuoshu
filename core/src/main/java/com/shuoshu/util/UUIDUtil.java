@@ -1,4 +1,4 @@
-package com.shuoshu.core.util;
+package com.shuoshu.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
