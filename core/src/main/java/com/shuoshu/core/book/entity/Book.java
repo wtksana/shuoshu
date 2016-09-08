@@ -1,13 +1,26 @@
 package com.shuoshu.core.book.entity;
 
 import com.shuoshu.core.base.entity.BaseEntity;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 
 /**
  * Created by mutou on 2016/8/28.
  */
-public class Book extends BaseEntity<Book> {
+@Entity(name = "book")
+public class Book{
 
     private static final long serialVersionUID = 1L;
+
+    /**
+     * 主键:UUID
+     */
+    @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid")
+    @Column(name = "uuid")
+    private String uuid;
 
     /* 书名 */
     private String name;
@@ -106,5 +119,13 @@ public class Book extends BaseEntity<Book> {
 
     public void setIntroduction(String introduction) {
         this.introduction = introduction;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 }

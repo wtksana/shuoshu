@@ -1,15 +1,27 @@
 package com.shuoshu.core.user.entity;
 
 import com.shuoshu.core.base.entity.BaseEntity;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.*;
 import java.util.Date;
 
 /**
  * Created by mutou on 2016/8/28.
  */
+@Entity(name = "user")
 public class User extends BaseEntity<User> {
 
     private static final long serialVersionUID = 1L;
+
+    /**
+     * 主键:UUID
+     */
+    @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid")
+    @Column(name = "uuid")
+    private String uuid;
 
     /* 用户名 */
     private String userName;
@@ -76,6 +88,14 @@ public class User extends BaseEntity<User> {
 
     public void setUpdateTime(long updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
 }
