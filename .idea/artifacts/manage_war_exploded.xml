@@ -25,7 +25,6 @@
           <element id="library" level="project" name="Maven: org.springframework.data:spring-data-commons-core:1.4.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-orm:3.1.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:3.1.2.RELEASE" />
-          <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.6.12" />
           <element id="library" level="project" name="Maven: org.freemarker:freemarker:2.3.20" />
           <element id="library" level="project" name="Maven: com.alibaba:druid:1.0.18" />
           <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.1.40" />
@@ -58,6 +57,8 @@
           <element id="library" level="project" name="Maven: org.apache.shiro:shiro-ehcache:1.2.4" />
           <element id="library" level="project" name="Maven: net.sf.ehcache:ehcache-core:2.5.0" />
           <element id="library" level="project" name="Maven: javax.servlet:servlet-api:2.5" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.8.5" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.8.6" />
         </element>
       </element>
       <element id="directory" name="META-INF">

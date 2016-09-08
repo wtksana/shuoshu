@@ -28,7 +28,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="core" target="1.5" />
+      <module name="core" target="1.6" />
       <module name="manage" target="1.5" />
       <module name="poms" target="1.5" />
       <module name="web" target="1.5" />
