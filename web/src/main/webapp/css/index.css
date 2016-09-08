@@ -1,0 +1,54 @@
+@charset "utf-8";
+.top_line{
+	height: 40px;
+	background: #D2D2D2;
+}
+.top_heart{
+	height: 40px;
+	width: 1000px;
+	margin: 0 auto;
+}
+.top_heart ul{
+	line-height: 40px;
+}
+.banner{
+	height: 400px;
+	background:url(../image/piecedesk.jpg);
+}
+.navigation_bar{
+	height: 60px;
+	width: 1000px;
+	margin: 0 auto;
+	/* background: #FBFAFA; */
+}
+.navigation_bar_lf{
+	
+}
+.navigation_bar_lf ul{
+	float: left;
+	line-height: 60px;
+	margin-right: 20px;
+}
+.navigation_bar_rt{
+	height: 40px;
+	margin: 10px 0px 10px;
+	border-radius: 5px;
+	border: 1px solid;
+	float: right;
+}
+.product_search{
+	height: 30px;
+	width: 390px;
+	margin: 4px;
+	border: 1px solid;
+	border-color:#D6D6D6;
+}
+.search_button{
+	height: 32px;
+	width: 80px;
+	margin: 4px 4px 4px 0px;
+	float: right;
+	background: #3198E0;
+}
+
+
