@@ -38,7 +38,8 @@
 
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
-    <!-- 使用Annotation自动注册Bean，解决事物失效问题：在主容器中不扫描@Controller注解，在SpringMvc中只扫描@Controller注解。  -->
+    <!-- 使用Annotation自动注册Bean，解决事物失效问题：在主容器中不扫描@Controller注解，在SpringMvc中只扫描@Controller注解。
+      context配置文件不扫描Controller，放到mvc.xml中扫描，分工明确-->
     <context:component-scan base-package="com.shuoshu"><!-- base-package 如果多个，用“,”分隔 -->
         <context:include-filter type="annotation" expression="org.aspectj.lang.annotation.Aspect"/>
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
@@ -50,7 +51,7 @@
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter"/>
-        <property name="packagesToScan" value="com.shuoshu.core" />
+        <property name="packagesToScan" value="com.shuoshu" />
         <property name="jpaProperties">
             <props>
                 <!-- 命名规则 My_NAME->MyName jhn:此种命名规则为遇到首字母大写的变成_+小写-->
@@ -58,7 +59,7 @@
                 <!-- 配置hibernate的属性 如果使用log4jdbc这个就不起作用 jhn:未了解log4jdbc-->
                 <prop key="hibernate.show_sql">false</prop>
                 <prop key="hibernate.format_sql">false</prop>
-                <!-- <prop key="hibernate.hbm2ddl.auto">create</prop> jhn:这玩意儿每次项目启动都会删除表格再重新创建表格-->
+                <!-- <prop key="hibernate.hbm2ddl.auto">create</prop> 这玩意儿每次项目启动都会删除表格再重新创建表格-->
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
             </props>
         </property>

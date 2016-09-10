@@ -30,6 +30,7 @@ public interface UserRepository extends JpaSpecificationExecutor<User>, PagingAn
     User findByUserNameAndMobile(String userName, String mobile);
 
     //如果觉得查询条件太多，可以通过sql查询
-    /*@Query(value = "select u from User u where u.uuid =?1")
-    List<User> findBySql(String uuid);*/
+    @SuppressWarnings("JpaQlInspection")
+    @Query(value = "select u from User u where u.uuid =?1")
+    User findBySql(String uuid);
 }

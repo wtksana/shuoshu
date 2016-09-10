@@ -1,6 +1,7 @@
 package com.shuoshu.web.controller;
 
 import com.shuoshu.core.base.controll.BaseController;
+import com.shuoshu.core.book.model.UserModel;
 import com.shuoshu.core.user.entity.User;
 import com.shuoshu.core.user.service.UserService;
 import com.shuoshu.util.UUIDUtil;
@@ -24,7 +25,30 @@ public class UserController extends BaseController {
     @Autowired
     private UserService userService;
 
-    //test
+
+    //用户登录页面
+    @RequestMapping(value = "/user/loginPage")
+    private String loginPage(){
+        return "/user/loginPage";
+    }
+
+
+    //用户登录
+    private String doLogin(User user){
+
+        return "";
+    }
+
+    @RequestMapping(value = "/user/register")
+    private String register(){
+        return "/user/register";
+    }
+
+    @RequestMapping(value = "/user/doRegister")
+    private void doRegister(User user){
+
+    }
+    /*//test
     @RequestMapping(value="/test")
     public ModelAndView test(){
         Page<User> userList = userService.getUserListByPage(new PageRequest(1,3));
@@ -46,5 +70,5 @@ public class UserController extends BaseController {
 
         }
         return "/index";
-    }
+    }*/
 }

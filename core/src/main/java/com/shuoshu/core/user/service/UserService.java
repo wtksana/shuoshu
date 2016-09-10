@@ -39,27 +39,27 @@ public class UserService {
         return userRepository.findAll(pageable);
     }
 
-    /*public User getUserByUUID(String uuid){
+    public User getUserByUUID(String uuid){
         return userRepository.findBySql(uuid);
-    }*/
+    }
 
     //更加复杂的查询
-    /*public Page<User> getUserListByModel(final User user, Pageable pageable){
+    public Page<User> getUserListByModel(final User user, Pageable pageable){
         userRepository.findAll(new Specification<User>(
 
         ) {
-            @Override
-            public Predicate toPredicate(Root<User> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-                Predicate userNamePre = null;
-                if (StringUtils.isNotBlank(user.getUserName())){
-                    userNamePre = criteriaBuilder.equal(root.<String> get("userName"), user.getUserName());
-                }
-                if(userNamePre != null){
-                    criteriaQuery.where(userNamePre);
+                    @Override
+                    public Predicate toPredicate(Root<User> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                        Predicate userNamePre = null;
+                        if (StringUtils.isNotBlank(user.getUserName())){
+                            userNamePre = criteriaBuilder.equal(root.<String> get("userName"), user.getUserName());
+                        }
+                        if(userNamePre != null){
+                            criteriaQuery.where(userNamePre);
                 }
                 return null;
             }
         }, pageable);
                 return null;
-    }*/
+    }
 }

@@ -9,7 +9,8 @@ import java.util.Date;
 /**
  * Created by mutou on 2016/8/28.
  */
-@Entity(name = "user")
+@Entity
+@Table(name="user")
 public class User extends BaseEntity<User> {
 
     private static final long serialVersionUID = 1L;

@@ -15,7 +15,7 @@ public class IndexController extends BaseController {
 
     @RequestMapping(value="/index")
     public String loginPage(Model model){
-        request.setAttribute("test2", "testasdasda123123123");
+
         return "/index";
     }
 
