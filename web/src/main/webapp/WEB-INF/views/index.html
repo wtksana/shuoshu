@@ -1,47 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>首页</title>
-	<!-- Bootstrap -->
-	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/theme/css/style.css" type="text/css">
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
-	<script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-	<script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-	<![endif]-->
-</head>
+<#include "include/head.html" />
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">说书</a>
-		</div>
-		<div id="navbar" class="navbar-collapse collapse">
-			<form class="navbar-form navbar-right" role="form">
-				<div class="form-group">
-					<input type="text" placeholder="Email" class="form-control">
-				</div>
-				<div class="form-group">
-					<input type="password" placeholder="Password" class="form-control">
-				</div>
-				<button type="submit" class="btn btn-primary">登录</button>
-                <button type="button" class="btn btn-success" onclick="window.open('/user/loginPage.html')">注册</button>
-            </form>
-		</div><!--/.navbar-collapse -->
-	</div>
-</nav>
-<div class="index-search">
+<#include "include/header.html" />
+<div class="index_search">
     <form action="" method="get">
     <div class="input-group">
         <input type="text" class="form-control" placeholder="书名、作者、ISBN">
@@ -51,7 +13,7 @@
     </div><!-- /input-group -->
     </form>
 </div>
-<h1>你好，世界！</h1>
+<h1>你好，世界！${test2}</h1>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>

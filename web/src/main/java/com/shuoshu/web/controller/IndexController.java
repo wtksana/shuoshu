@@ -14,13 +14,14 @@ public class IndexController extends BaseController {
 
 
     @RequestMapping(value="/index")
-    public String loginPage(Model model){
-        request.setAttribute("test2", "asdasd");
+    public String index(Model model){
+        request.setAttribute("test2", "as121d21as1d2asd1");
         return "/index";
     }
 
     @RequestMapping(value = "/search")
-    public String search(){
+    public String search(String searchParam){
+
         return "/search";
     }
 
