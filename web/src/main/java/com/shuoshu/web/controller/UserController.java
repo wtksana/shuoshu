@@ -4,7 +4,10 @@ import com.shuoshu.core.base.controll.BaseController;
 import com.shuoshu.core.book.model.UserModel;
 import com.shuoshu.core.user.entity.User;
 import com.shuoshu.core.user.service.UserService;
+import com.shuoshu.exception.UserException;
 import com.shuoshu.util.UUIDUtil;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.UUID;
 
 /**
@@ -34,9 +38,22 @@ public class UserController extends BaseController {
 
 
     //用户登录
-    private String doLogin(User user){
+    @RequestMapping(value = "/user/doLogin")
+    private String doLogin(HttpServletRequest request) throws Exception{
 
-        return "";
+        //如果登录失败，则从request中获取异常信息，shiroLoginFailure就是shiro
+        String exceptionClassName = request.getParameter("shiroLoginFailure");
+        if(exceptionClassName != null){
+            if(UnknownAccountException.class.getName().equals(exceptionClassName)){
+                throw new UserException("账号不存在");
+            }else if(IncorrectCredentialsException.class.getName().equals(exceptionClassName)){
+                throw new UserException("用户名/密码错误");
+            }else{
+                throw new Exception();
+            }
+        }
+        //如果登录失败 跳到登录页面
+        return "/user/loginPage";
     }
 
     @RequestMapping(value = "/user/register")

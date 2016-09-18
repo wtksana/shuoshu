@@ -13,6 +13,7 @@ import java.util.List;
 /**
  * Created by mutou on 2016/8/31.
  */
+@Repository
 public interface UserRepository extends JpaSpecificationExecutor<User>, PagingAndSortingRepository<User, Serializable> {
 
     //接口以外的方法补充

@@ -21,10 +21,10 @@ import java.util.List;
 /**
  * Created by mutou on 2016/8/31.
  */
-@Component
+@Service
 @Transactional
 public class UserService {
-    @Autowired
+    @Resource
     private UserRepository userRepository;
 
     public void save(User user){
@@ -41,6 +41,10 @@ public class UserService {
 
     public User getUserByUUID(String uuid){
         return userRepository.findBySql(uuid);
+    }
+
+    public User findByUserName(String userName){
+        return userRepository.findByUserName(userName);
     }
 
     //更加复杂的查询

@@ -17,6 +17,8 @@
 
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
+
+
     <!-- 使用Annotation自动注册Bean,只扫描@Controller -->
     <context:component-scan base-package="com.shuoshu" use-default-filters="false">
         <context:include-filter type="annotation" expression="org.aspectj.lang.annotation.Aspect"/>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:p="http://www.springframework.org/schema/p"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	   xmlns:jee="http://www.springframework.org/schema/jee"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xmlns:task="http://www.springframework.org/schema/task"
+	   xmlns:cache="http://www.springframework.org/schema/cache"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	   xmlns:repository="http://www.springframework.org/schema/data/repository"
+	   xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd
+		http://www.springframework.org/schema/cache
+     	http://www.springframework.org/schema/cache/spring-cache.xsd
+     	http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+        http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd
+        http://www.springframework.org/schema/data/repository http://www.springframework.org/schema/data/repository/spring-repository-1.5.xsd"
+	   default-lazy-init="true">
+
+
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager" />
+		<!--loginUrl认证提交地址，如果没有认证将会请求此地址进行认证，请求此地址将由formAuthenticationFilter进行表单认证-->
+		<property name="loginUrl" value="/user/loginPage.html"/>
+        <!-- 登录成功后跳转到的action，建议不配置，不配置会自动跳转到上一个路径 -->
+        <!--<property name="successUrl" value="/success.action" />-->
+		<!--真实的过滤器（过滤链）从上往下执行，一般将/**放到下边-->
+		<property name="filterChainDefinitions">
+			<value>
+                <!-- 退出登录，清除session -->
+                /logout.action = logout
+				<!-- /** = anno 所有url都可以访问 -->
+				/** = anno
+                <!-- 所有的路径都需要认证才能访问 -->
+
+			</value>
+		</property>
+	</bean>
+
+    <!-- 安全管理器，主体进行认证和授权都 是通过securityManager进行 -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="shuoShuRealm" />
+	</bean>
+
+    <!-- realm存取认证、授权相关数据 -->
+    <bean id="shuoShuRealm" class="com.shuoshu.web.shiro.ShuoShuRealm" >
+        <property name="credentialsMatcher" ref="credentialsMatcher" />
+    </bean>
+
+    <!-- 凭证匹配器 -->
+    <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+        <!-- 配置为MD5摘要算法 -->
+        <property name="hashAlgorithmName" value="md5"/>
+        <!-- 迭代次数为1次 -->
+        <property name="hashIterations" value="1"/>
+    </bean>
+<!-- web.xml中shiro的filter对应的bean -->
+<!-- Shiro 的Web过滤器 -->
+	<!--<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager" />
+		&lt;!&ndash; loginUrl认证提交地址，如果没有认证将会请求此地址进行认证，请求此地址将由formAuthenticationFilter进行表单认证 &ndash;&gt;
+		<property name="loginUrl" value="/login.action" />
+		&lt;!&ndash; 认证成功统一跳转到first.action，建议不配置，shiro认证成功自动到上一个请求路径 &ndash;&gt;
+		<property name="successUrl" value="/first.action"/>
+		&lt;!&ndash; 通过unauthorizedUrl指定没有权限操作时跳转页面&ndash;&gt;
+		<property name="unauthorizedUrl" value="/refuse.jsp" />
+		&lt;!&ndash; 自定义filter配置 &ndash;&gt;
+		<property name="filters">
+			<map>
+				&lt;!&ndash; 将自定义 的FormAuthenticationFilter注入shiroFilter中&ndash;&gt;
+				<entry key="authc" value-ref="formAuthenticationFilter" />
+			</map>
+		</property>
+		
+		&lt;!&ndash; 过虑器链定义，从上向下顺序执行，一般将/**放在最下边 &ndash;&gt;
+		<property name="filterChainDefinitions">
+			<value>
+				&lt;!&ndash; 对静态资源设置匿名访问 &ndash;&gt;
+				/images/** = anon
+				/js/** = anon
+				/styles/** = anon
+				&lt;!&ndash; 验证码，可匿名访问 &ndash;&gt;
+				/validatecode.jsp = anon
+				
+				&lt;!&ndash; 请求 logout.action地址，shiro去清除session&ndash;&gt;
+				/logout.action = logout
+				&lt;!&ndash;商品查询需要商品查询权限 ，取消url拦截配置，使用注解授权方式 &ndash;&gt;
+				&lt;!&ndash; /items/queryItems.action = perms[item:query]
+				/items/editItems.action = perms[item:edit] &ndash;&gt;
+				&lt;!&ndash; 配置记住我或认证通过可以访问的地址 &ndash;&gt;
+				/index.jsp  = user
+				/first.action = user
+				/welcome.jsp = user
+				&lt;!&ndash; /** = authc 所有url都必须认证通过才可以访问&ndash;&gt;
+				/** = authc
+				&lt;!&ndash; /** = anon所有url都可以匿名访问 &ndash;&gt;
+				
+			</value>
+		</property>
+	</bean>
+
+&lt;!&ndash; securityManager安全管理器 &ndash;&gt;
+<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="customRealm" />
+		&lt;!&ndash; 注入缓存管理器 &ndash;&gt;
+		<property name="cacheManager" ref="cacheManager"/>
+		&lt;!&ndash; 注入session管理器 &ndash;&gt;
+		<property name="sessionManager" ref="sessionManager" />
+		&lt;!&ndash; 记住我 &ndash;&gt;
+		<property name="rememberMeManager" ref="rememberMeManager"/>
+		
+	</bean>
+
+&lt;!&ndash; realm &ndash;&gt;
+<bean id="customRealm" class="cn.itcast.ssm.shiro.CustomRealm">
+	&lt;!&ndash; 将凭证匹配器设置到realm中，realm按照凭证匹配器的要求进行散列 &ndash;&gt;
+	<property name="credentialsMatcher" ref="credentialsMatcher"/>
+</bean>
+
+&lt;!&ndash; 凭证匹配器 &ndash;&gt;
+<bean id="credentialsMatcher"
+	class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+	<property name="hashAlgorithmName" value="md5" />
+	<property name="hashIterations" value="1" />
+</bean>
+
+&lt;!&ndash; 缓存管理器 &ndash;&gt;
+<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+    	<property name="cacheManagerConfigFile" value="classpath:shiro-ehcache.xml"/>
+    </bean>
+
+&lt;!&ndash; 会话管理器 &ndash;&gt;
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        &lt;!&ndash; session的失效时长，单位毫秒 &ndash;&gt;
+        <property name="globalSessionTimeout" value="600000"/>
+        &lt;!&ndash; 删除失效的session &ndash;&gt;
+        <property name="deleteInvalidSessions" value="true"/>
+    </bean>
+
+&lt;!&ndash; 自定义form认证过虑器 &ndash;&gt;
+&lt;!&ndash; 基于Form表单的身份验证过滤器，不配置将也会注册此过虑器，表单中的用户账号、密码及loginurl将采用默认值，建议配置 &ndash;&gt;
+	<bean id="formAuthenticationFilter" 
+	class="cn.itcast.ssm.shiro.CustomFormAuthenticationFilter ">
+		&lt;!&ndash; 表单中账号的input名称 &ndash;&gt;
+		<property name="usernameParam" value="username" />
+		&lt;!&ndash; 表单中密码的input名称 &ndash;&gt;
+		<property name="passwordParam" value="password" />
+		&lt;!&ndash; 记住我input的名称 &ndash;&gt;
+		<property name="rememberMeParam" value="rememberMe"/>
+ </bean>
+
+&lt;!&ndash; rememberMeManager管理器，写cookie，取出cookie生成用户信息 &ndash;&gt;
+	<bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+		<property name="cookie" ref="rememberMeCookie" />
+	</bean>
+	&lt;!&ndash; 记住我cookie &ndash;&gt;
+	<bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+		&lt;!&ndash; rememberMe是cookie的名字 &ndash;&gt;
+		<constructor-arg value="rememberMe" />
+		&lt;!&ndash; 记住我cookie生效时间30天 &ndash;&gt;
+		<property name="maxAge" value="2592000" />
+	</bean>-->
+
+
+</beans>
