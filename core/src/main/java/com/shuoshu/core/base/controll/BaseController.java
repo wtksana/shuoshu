@@ -1,6 +1,7 @@
 package com.shuoshu.core.base.controll;
 
 import com.shuoshu.util.BigDecimalUtils;
+import com.shuoshu.util.SessionUtils;
 import com.shuoshu.util.StringUtils;
 import org.apache.shiro.session.Session;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,7 +22,7 @@ public class BaseController {
     public void setReqAndRes(HttpServletRequest request, HttpServletResponse response){
         this.request = request;
         this.response = response;
-        //this.session = SessionUtils.getSession();
+        this.session = SessionUtils.getSession();
     }
 
     protected String paramString(String str) {

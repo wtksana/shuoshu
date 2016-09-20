@@ -5,6 +5,7 @@ import com.shuoshu.core.book.model.UserModel;
 import com.shuoshu.core.user.entity.User;
 import com.shuoshu.core.user.service.UserService;
 import com.shuoshu.exception.UserException;
+import com.shuoshu.util.MD5Utils;
 import com.shuoshu.util.UUIDUtil;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -36,24 +37,10 @@ public class UserController extends BaseController {
         return "/user/loginPage";
     }
 
-
     //用户登录
     @RequestMapping(value = "/user/doLogin")
-    private String doLogin(HttpServletRequest request) throws Exception{
-
-        //如果登录失败，则从request中获取异常信息，shiroLoginFailure就是shiro
-        String exceptionClassName = request.getParameter("shiroLoginFailure");
-        if(exceptionClassName != null){
-            if(UnknownAccountException.class.getName().equals(exceptionClassName)){
-                throw new UserException("账号不存在");
-            }else if(IncorrectCredentialsException.class.getName().equals(exceptionClassName)){
-                throw new UserException("用户名/密码错误");
-            }else{
-                throw new Exception();
-            }
-        }
-        //如果登录失败 跳到登录页面
-        return "/user/loginPage";
+    private String doLogin(){
+        return "";
     }
 
     @RequestMapping(value = "/user/register")
@@ -63,29 +50,11 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "/user/doRegister")
     private void doRegister(User user){
+        User registerUser = new User();
 
+        UserModel.checkRegisterUser(user);
+        registerUser.setEmail(user.getEmail());
+
+        registerUser.setPwd(MD5Utils.encode(user.getPwd()));
     }
-    /*//test
-    @RequestMapping(value="/test")
-    public ModelAndView test(){
-        Page<User> userList = userService.getUserListByPage(new PageRequest(1,3));
-        mv = new ModelAndView();
-        mv.addObject("userList", userList.getContent());
-        mv.setViewName("/userList");
-        return mv;
-    }
-
-    //test
-    @RequestMapping(value="/saveUser")
-    public String saveUser(){
-        System.out.println("asdasdasd");
-        for (int i = 0; i < 20; i++) {
-            User user = new User();
-            user.setUuid(UUIDUtil.getSerialNumber());
-            user.setUserName(i+"jhn");
-            userService.save(user);
-
-        }
-        return "/index";
-    }*/
 }

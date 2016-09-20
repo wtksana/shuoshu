@@ -7,6 +7,7 @@ import com.shuoshu.core.user.entity.User;
  */
 public class UserModel extends User{
 
+    //检查注册信息是否合法
     public static void checkRegisterUser(User user){
 
     }

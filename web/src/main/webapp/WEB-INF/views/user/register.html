@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
+<#include "../include/head.html">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
+    <title>注册</title>
 
+    <script src="/theme/js/jquery-3.1.0.min.js"></script>
     <!-- Bootstrap -->
-    <link href="/theme/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <link href="/theme/css/user/register.css" rel="stylesheet">
 </head>
 <body>
-<form action="localhost:8080/user/registerFirst.html" autocomplete="off" method="post" name="formUser" id="signupForm" >
-    <ul class = label-success></ul>
+<div class="container">
 
+    <form class="form-signin" role="form">
 
-</form>
-<h1>你好，世界！</h1>
+        <input type="email" class="form-control" placeholder="邮箱">
+        <input type="password" class="form-control" placeholder="密码">
+        <input type="text" class="form-control" placeholder="验证码">
+        <img src="${webUrl}/validimg.html" alt="点击刷新" onClick="this.src='${webUrl}/validimg.html?t=' + Math.random();" />
+        <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
+    </form>
+
+</div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="/theme/js/bootstrap.min.js"></script>
+<script type="text/javascript">seajs.use('user/register');</script>
 </body>
 </html>

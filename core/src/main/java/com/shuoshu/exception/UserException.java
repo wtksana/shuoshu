@@ -3,7 +3,7 @@ package com.shuoshu.exception;
 /**
  * Created by mutou on 2016/9/18.
  */
-public class UserException extends Exception{
+public class UserException extends BaseException{
     //异常信息
     private String message;
 
@@ -12,6 +12,8 @@ public class UserException extends Exception{
         this.message = message;
 
     }
+
+    public
 
     public String getMessage() {
         return message;
