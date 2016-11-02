@@ -6,6 +6,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.Properties;
+
 /**
  * Created by wt on 2016/8/26.
  */
@@ -14,15 +21,10 @@ public class IndexController extends BaseController {
 
 
     @RequestMapping(value="/index")
-    public String index(Model model){
-        request.setAttribute("test2", "as121d21as1d2asd1");
+    public String index(Model model) throws IOException {
         return "/index";
     }
 
-    @RequestMapping(value = "/search")
-    public String search(String searchParam){
-
-        return "/search";
-    }
-
 }
+
+//String inPath = request.getSession().getServletContext().getRealPath("/WEB-INF/classes/testFile.text"); System.out.println(inPath);InputStream in = new FileInputStream(inPath);

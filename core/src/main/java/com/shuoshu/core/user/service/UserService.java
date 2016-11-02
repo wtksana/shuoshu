@@ -24,7 +24,7 @@ import java.util.List;
 @Service
 @Transactional
 public class UserService {
-    @Resource
+    @Autowired
     private UserRepository userRepository;
 
     public void save(User user){

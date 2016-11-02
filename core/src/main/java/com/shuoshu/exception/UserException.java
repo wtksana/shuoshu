@@ -13,8 +13,6 @@ public class UserException extends BaseException{
 
     }
 
-    public
-
     public String getMessage() {
         return message;
     }
