@@ -8,16 +8,22 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
+
 /**
  * Created by mutou on 2016/11/2.
  */
-@Service
+@Service(value = "bookService")
 @Transactional
 public class BookService {
-    @Autowired
+    @Resource
     private BookRepository bookRepository;
 
     public Page<Book> getBookListByPage(Pageable pageable){
         return bookRepository.findAll(pageable);
+    }
+
+    public void save(Book book){
+        bookRepository.save(book);
     }
 }

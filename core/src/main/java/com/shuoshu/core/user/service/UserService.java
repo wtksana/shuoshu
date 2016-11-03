@@ -21,10 +21,10 @@ import java.util.List;
 /**
  * Created by mutou on 2016/8/31.
  */
-@Service
+@Service(value = "userService")
 @Transactional
 public class UserService {
-    @Autowired
+    @Resource
     private UserRepository userRepository;
 
     public void save(User user){

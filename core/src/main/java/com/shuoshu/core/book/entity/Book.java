@@ -9,7 +9,7 @@ import javax.persistence.*;
  * Created by mutou on 2016/8/28.
  */
 @Entity(name = "book")
-public class Book{
+public class Book extends BaseEntity<Book>{
 
     private static final long serialVersionUID = 1L;
 

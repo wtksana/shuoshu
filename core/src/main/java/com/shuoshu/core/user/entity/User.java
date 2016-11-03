@@ -11,10 +11,9 @@ import java.util.Date;
  */
 @Entity
 @Table(name="user")
-public class User extends BaseEntity<User> {
+public class User extends BaseEntity<User>{
 
     private static final long serialVersionUID = 1L;
-
     /**
      * 主键:UUID
      */
